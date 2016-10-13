@@ -6,6 +6,7 @@ drop table if exists Departments;
 create table Departments (
 id int(255) primary key auto_increment,
 name varchar(50) not null
+);
 
 DROP TABLE IF EXISTS Logins;
 
@@ -31,7 +32,7 @@ CREATE TABLE Employees (
 	startingSalary double,
 	employeeNo int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	departmentId int
-)
+);
 
 insert into Departments (name)
 values ('Evolve');
