@@ -1,0 +1,3 @@
+CREATE DATABASE Connect4;
+USE Connect4;
+SET AUTO_COMMIT = 0;
