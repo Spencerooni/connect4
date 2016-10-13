@@ -47,11 +47,96 @@ public class Main {
         switch (accessNo){
             case 1 :
                 System.out.println("HR");
+                employeesPerDepartment();
+
                 break;
             case 2 :
                 System.out.println("FINANCE");
                 break;
         }
     }
+
+
+
+
+    //Method used by HR in User Story 2
+    public void employeesPerBU (){
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                    "root", "password");
+
+            String sql = "select Departments.name, count(*) as 'EmployeesPerDepartment' from (Employees left join Departments on Employees.departmentId = Departments.id) " +
+                    "group by Employees.departmentId";
+
+            PreparedStatement prepr = conn.prepareStatement(sql);
+
+            ResultSet result = prepr.executeQuery();
+
+
+            System.out.println("Employees Per BU");
+            System.out.println("Department" + "\t\t" + "Number of Employees");
+
+
+            while (result.next()) {
+                String department = result.getString("name");
+                int emps = result.getInt("EmployeesPerDepartment");
+
+                System.out.printf("%-22s %s\n", department, emps);
+            }
+        }
+        catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+
+
+    }
+
+
+    //Method used in User Story 2 - Employees Per Department
+    public static void employeesPerDepartment(){
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                    "root", "password");
+
+            String sql = "select Departments.name as 'Department Name', ifnull(concat(Employees.forename, Employees.surname), 'No Employee') as 'Employee Name' " +
+                    "from Departments left join Employees on Departments.id = Employees.departmentId";
+
+            PreparedStatement prepr = conn.prepareStatement(sql);
+
+            ResultSet result = prepr.executeQuery();
+
+
+            System.out.println("Employee Names Per Department");
+            System.out.println("Department" + "\t\t\t\t" + "Employee Name");
+
+
+            while (result.next()) {
+                String department = result.getString("Department Name");
+                String empsName = result.getString("Employee Name");
+
+                System.out.printf("%-23s %s\n", department, empsName);
+            }
+        }
+        catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+
+
+    }
+
+
+
+
+
 }
 
