@@ -11,6 +11,8 @@ password varchar(50) NOT NULL,
 accessNo int NOT NULL
 );
 
+insert into Logins (username, password, accessNo) values ('hr@kainos.com', 'password1', 1);
+insert into Logins (username, password, accessNo) values ('finance@kainos.com', 'password2', 2); 
 drop table if exists Departments;
 
 create table Departments (
