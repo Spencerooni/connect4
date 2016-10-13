@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS Connect4;
 CREATE DATABASE Connect4;
 USE Connect4;
 
@@ -38,7 +39,7 @@ insert into Departments (name)
 values ('Evolve');
 
 insert into Departments (name)
-values ('Enterprise') 
+values ('Enterprise'); 
 
 insert into Departments (name)
 values ('Gov');
@@ -47,9 +48,9 @@ insert into Logins (username, password, accessNo) values ("hr@kainos.com", "pass
 insert into Logins (username, password, accessNo) values ("finance@kainos.com", "password2", 2); 
 
 INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
-Values ("Aoife", "Gildernew", "54 New Street", "New Road", "New Town", "New County", "BT67 3DK", "PB638474D", 10000, 1)
+Values ("Aoife", "Gildernew", "54 New Street", "New Road", "New Town", "New County", "BT67 3DK", "PB638474D", 10000, 1);
 
 INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
-Values ("Ben", "Leonard", "7 Street", "Road", "Town", "County", "BT67 6HF", "PP784389A", 12500.50, 2)
+Values ("Ben", "Leonard", "7 Street", "Road", "Town", "County", "BT67 6HF", "PP784389A", 12500.50, 2);
 
 alter table Employees add constraint fk_Employees_ref_Departments foreign key Employees(departmentId) references Departments(id);
