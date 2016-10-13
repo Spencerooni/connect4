@@ -11,6 +11,23 @@ password varchar(50) NOT NULL,
 accessNo int NOT NULL
 );
 
+DROP TABLE IF EXISTS Employees; 
+
+CREATE TABLE Employees (
+	forename varchar(30) NOT NULL,
+	surname varchar(30) NOT NULL,
+	addressLine1 varchar(30),
+	addressLine2 varchar(30),	
+	town varchar(30),
+	county varchar(30),
+	postcode varchar(8),
+	nino varchar(9) UNIQUE,
+	bankNo varchar(34) UNIQUE,
+	startingSalary double,
+	employeeNo int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	departmentId int
+)
+
 drop table if exists Departments;
 
 create table Departments (
