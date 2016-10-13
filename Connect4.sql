@@ -31,6 +31,12 @@ CREATE TABLE Employees (
 insert into Logins (username, password, accessNo) values ('hr@kainos.com', 'password1', 1);
 insert into Logins (username, password, accessNo) values ('finance@kainos.com', 'password2', 2); 
 
+INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
+Values ("Aoife", "Gildernew", "54 New Street", "New Road", "New Town", "New County", "BT67 3DK", "PB638474D", 10000, 1)
+
+INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
+Values ("Ben", "Leonard", "7 Street", "Road", "Town", "County", "BT67 6HF", "PP784389A", 12500.50, 2)
+
 drop table if exists Departments;
 
 create table Departments (
@@ -46,3 +52,5 @@ values ('Enterprise');
 
 insert into Departments (name)
 values ('Gov');
+
+alter table Employees add constraint fk_Employees_ref_Departments foreign key Employees(departmentId) references Departments(id);
