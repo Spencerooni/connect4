@@ -21,8 +21,8 @@ public class Main {
                 "root",
                 "password");
 
-       PreparedStatement statement =  connection.prepareStatement("Select * from Departments;");
-       ResultSet resultResult = statement.executeQuery();
+        PreparedStatement statement = connection.prepareStatement("Select * from Departments;");
+        ResultSet resultResult = statement.executeQuery();
 
         //Printing Menu
 
@@ -35,7 +35,6 @@ public class Main {
         String password = scanner.next();
 
 
-
         String loginString = String.format("Select accessNo from Logins where username = \"%s\" and password = \"%s\"", login, password);
 
         PreparedStatement loginStatement = connection.prepareStatement(loginString);
@@ -43,8 +42,8 @@ public class Main {
 
         int accessNo = 0;
 
-        while (loginResultSet.next()){
-             accessNo = loginResultSet.getInt("accessNo");
+        while (loginResultSet.next()) {
+            accessNo = loginResultSet.getInt("accessNo");
         }
 
         switch (accessNo){
@@ -53,12 +52,12 @@ public class Main {
                 System.out.println("HR");
                 employeesPerDepartment();
                 break;
-            case 2 :
+            case 2:
                 System.out.println("FINANCE");
+                employeesGrossPay();
                 break;
         }
     }
-
 
     public static void hrAccess(){
         System.out.println("HR Access Level Approved.");
@@ -126,14 +125,12 @@ public class Main {
 
                 System.out.printf("%-22s %s\n", department, emps);
             }
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-
 
 
     }
@@ -251,7 +248,7 @@ public class Main {
 
 
     //Method used in User Story 2 - Employees Per Department
-    public static void employeesPerDepartment(){
+    public static void employeesPerDepartment() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
@@ -275,8 +272,39 @@ public class Main {
 
                 System.out.printf("%-23s %s\n", department, empsName);
             }
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
         }
-        catch (SQLException ex) {
+    }
+
+    //Method used in User Story 4 - Employees and their Gross Pay
+    public static void employeesGrossPay() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                    "root", "password");
+
+            String sql = "Select Employees.employeeNo, ifnull(concat(Employees.forename, Employees.surname), 'No Employee') as 'Employee', ifnull((Employees.startingSalary + (Sales.totalSales / 100 * Sales.commissionRate)), Employees.StartingSalary) as 'GrossPay' from Employees LEFT JOIN Sales On Employees.employeeNo = Sales.employeeNo";
+
+            PreparedStatement prepr = conn.prepareStatement(sql);
+
+            ResultSet result = prepr.executeQuery();
+
+
+            System.out.println("Employees and their Gross Pay");
+            System.out.println("Employee" + "\t\t\t\t" + "Gross Pay");
+
+
+            while (result.next()) {
+                String employeeName = result.getString("Employee");
+                String grossPay = result.getString("GrossPay");
+
+                System.out.printf("%-23s %s\n", employeeName, grossPay);
+            }
+        } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
@@ -284,10 +312,9 @@ public class Main {
         }
 
 
-
-
-
     }
+
+
 
 
     public static void AddSalesEmployee(SalesEmployee emp) {
