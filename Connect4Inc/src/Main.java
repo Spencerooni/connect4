@@ -46,11 +46,40 @@ public class Main {
 
         switch (accessNo){
             case 1 :
-                System.out.println("HR");
+                hrAccess();
                 break;
             case 2 :
                 System.out.println("FINANCE");
                 break;
+        }
+    }
+
+    public static void hrAccess(){
+        System.out.println("HR Access Level Approved.");
+        System.out.println();
+        Scanner inputScanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Please select what you would like to do.");
+            System.out.println("1. Enter New Employee");
+            System.out.println("2. Generate Employees per Project report");
+            int inputChoice = inputScanner.nextInt();
+            inputScanner.next();
+            try{
+            switch(inputChoice) {
+                case 1:
+                    System.out.println("Decided to create employee.");
+                    createEmployee();
+                    break;
+                case 2:
+                    System.out.println("Decided to generate report.");
+                    generateEmployeeReport();
+                    break;
+                default:
+                    System.out.println("Invalid option. Please re-emter.");
+            }catch(Exception e){
+                    System.out.println("Invalid entry. Please re-enter.");
+                }
+            }
         }
     }
 }
