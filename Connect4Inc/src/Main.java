@@ -20,17 +20,14 @@ public class Main {
                 "root",
                 "password");
 
-        PreparedStatement statement = connection.prepareStatement("Select * from Departments;");
-        ResultSet resultResult = statement.executeQuery();
-
         //Printing Menu
 
         System.out.println("\n******* *******\n Connect4 Inc\n******* *******");
 
         System.out.println("\n** Login **");
-        System.out.println("\nUsername:");
+        System.out.print("\nUsername:");
         String login = scanner.next();
-        System.out.println("Password: ");
+        System.out.print("Password: ");
         String password = scanner.next();
 
 
@@ -49,20 +46,21 @@ public class Main {
             case 1:
                 hrAccess();
                 System.out.println("\n");
-                employeesPerDepartment();
                 break;
             case 2:
                 System.out.println("FINANCE");
                 employeesGrossPay();
                 break;
-            case 3 :
+            case 3:
                 manager();
                 break;
-            case 4 :
+            case 4:
                 talentManager();
+                break;
+            default:
+                System.out.println("invalid Permissions");
         }
     }
-
 
 
     public static void hrAccess() {
@@ -78,81 +76,37 @@ public class Main {
             System.out.println("2. Enter New Sales Employee");
             System.out.println("3. Generate Employees per Project report");
             System.out.println("4. Quit the program");
+
+            System.out.println("Please enter a menu number: ");
             int inputChoice = inputScanner.nextInt();
 
-            inputScanner.next();
+            inputScanner.nextLine();
             try {
                 switch (inputChoice) {
                     case 1:
                         System.out.println("Decided to create employee.");
+                        addNewEmployee(inputChoice);
                         break;
                     case 2:
                         System.out.println("Decided to create new sales employee");
+                        addNewEmployee(inputChoice);
                         break;
                     case 3:
                         System.out.println("Decided to generate report.");
                         employeesPerBU();
                         break;
+                    case 4:
+                        System.exit(0);
                     default:
                         System.out.println("Invalid option. Please re-enter.");
 
-                        inputScanner.nextLine();
-                        try {
-                            switch (inputChoice) {
-                                case 1:
-                                    System.out.println("Decided to create employee.");
-                                    addNewEmployee(inputChoice);
-                                    break;
-                                case 2:
-                                    System.out.println("Decided to create new sales employee");
-                                    addNewEmployee(inputChoice);
-                                    break;
-                                case 3:
-                                    System.out.println("Decided to generate report.");
-                                    employeesPerBU();
-                                    break;
-                                case 4:
-                                    System.out.println("Quitting program...");
-                                    System.exit(0);
-                                default:
-                                    System.out.println("Invalid option. Please re-emter.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Invalid entry. Please re-enter.");
-
-                        }
-
-                        inputScanner.nextLine();
-                        try {
-                            switch (inputChoice) {
-                                case 1:
-                                    System.out.println("Decided to create employee.");
-                                    addNewEmployee(inputChoice);
-                                    break;
-                                case 2:
-                                    System.out.println("Decided to create new sales employee");
-                                    addNewEmployee(inputChoice);
-                                    break;
-                                case 3:
-                                    System.out.println("Decided to generate report.");
-                                    employeesPerBU();
-                                    break;
-                                case 4:
-                                    System.out.println("Quitting program...");
-                                    System.exit(0);
-                                default:
-                                    System.out.println("Invalid option. Please re-enter.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Invalid entry. Please re-enter.");
-
-                        }
-
-
                 }
             } catch (Exception e) {
-                System.out.println("error");
+                System.out.println("Invalid entry. Please re-enter.");
+
             }
+
+
         }
     }
 
@@ -189,7 +143,6 @@ public class Main {
         }
 
 
-
     }
 
 
@@ -197,80 +150,79 @@ public class Main {
 
         switch (userChoice) {
             case 1:
-                try{
-                Scanner employeeInputScanner = new Scanner(System.in);
-                System.out.print("Please enter forename: ");
-                String forename = employeeInputScanner.next();
-                System.out.print("Please enter surname: ");
-                String surname = employeeInputScanner.next();
-                System.out.print("Please enter address line 1: ");
-                String addressLine1 = employeeInputScanner.next();
-                System.out.print("Please enter address line 2: ");
-                String addressLine2 = employeeInputScanner.next();
-                System.out.print("Please enter town: ");
-                String town = employeeInputScanner.next();
-                System.out.print("Please enter county: ");
-                String county = employeeInputScanner.next();
-                System.out.print("Please enter postcode: ");
-                String postcode = employeeInputScanner.next();
-                System.out.print("Please enter department id: ");
-                int departmentID = employeeInputScanner.nextInt();
-                employeeInputScanner.nextLine();
-                System.out.print("Please enter bank no: ");
-                String bankNo = employeeInputScanner.next();
-                System.out.print("Please enter starting salary: ");
-                Double startingSalary = employeeInputScanner.nextDouble();
-                employeeInputScanner.nextLine();
-                System.out.print("Please enter national insurance number:");
-                String nationalInsuranceNo = employeeInputScanner.next();
+                try {
+                    Scanner employeeInputScanner = new Scanner(System.in);
+                    System.out.print("Please enter forename: ");
+                    String forename = employeeInputScanner.next();
+                    System.out.print("Please enter surname: ");
+                    String surname = employeeInputScanner.next();
+                    System.out.print("Please enter address line 1: ");
+                    String addressLine1 = employeeInputScanner.next();
+                    System.out.print("Please enter address line 2: ");
+                    String addressLine2 = employeeInputScanner.next();
+                    System.out.print("Please enter town: ");
+                    String town = employeeInputScanner.next();
+                    System.out.print("Please enter county: ");
+                    String county = employeeInputScanner.next();
+                    System.out.print("Please enter postcode: ");
+                    String postcode = employeeInputScanner.next();
+                    System.out.print("Please enter department id: ");
+                    int departmentID = employeeInputScanner.nextInt();
+                    employeeInputScanner.nextLine();
+                    System.out.print("Please enter bank no: ");
+                    String bankNo = employeeInputScanner.next();
+                    System.out.print("Please enter starting salary: ");
+                    Double startingSalary = employeeInputScanner.nextDouble();
+                    employeeInputScanner.nextLine();
+                    System.out.print("Please enter national insurance number:");
+                    String nationalInsuranceNo = employeeInputScanner.next();
 
-                Employees newEmp = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
-
-
-
-            System.out.println(newEmp.getBankNo());
-            Connection conn = null;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
-                    "root", "password");
+                    Employees newEmp = new Employees(forename, surname, addressLine1, addressLine2, town, county, postcode, departmentID, bankNo, startingSalary, nationalInsuranceNo);
 
 
-            String sql = "insert into Employees" +
-                    "(" +
-                    "forename," +
-                    "surname," +
-                    "addressLine1, " +
-                    "addressLine2," +
-                    "town, " +
-                    "county, " +
-                    "postcode, " +
-                    "nino, " +
-                    "bankNo, " +
-                    "startingSalary, " +
-                    "departmentId) " +
-                    "values ("
-                    + "\"" + newEmp.getForename() + "\"" + ","
-                    + "\"" + newEmp.getSurname() + "\"" + ","
-                    + "\"" + newEmp.getAddressLine1() + "\"" + ","
-                    + "\"" + newEmp.getAddressLine2() + "\"" + ","
-                    + "\"" + newEmp.getTown() + "\"" + ","
-                    + "\"" + newEmp.getCounty() + "\"" + ","
-                    + "\"" + newEmp.getPostcode() + "\"" + ","
-                    + "\"" + newEmp.getNino() + "\"" + ","
-                    + "\"" + newEmp.getBankNo() + "\"" + ","
-                    + newEmp.getStartingSalary() + ","
-                    + newEmp.getDepartmentId() + ")";
+                    System.out.println(newEmp.getBankNo());
+                    Connection conn = null;
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                            "root", "password");
 
-            System.out.println(sql);
 
-            PreparedStatement prep1 =
-                    conn.prepareStatement(sql);
+                    String sql = "insert into Employees" +
+                            "(" +
+                            "forename," +
+                            "surname," +
+                            "addressLine1, " +
+                            "addressLine2," +
+                            "town, " +
+                            "county, " +
+                            "postcode, " +
+                            "nino, " +
+                            "bankNo, " +
+                            "startingSalary, " +
+                            "departmentId) " +
+                            "values ("
+                            + "\"" + newEmp.getForename() + "\"" + ","
+                            + "\"" + newEmp.getSurname() + "\"" + ","
+                            + "\"" + newEmp.getAddressLine1() + "\"" + ","
+                            + "\"" + newEmp.getAddressLine2() + "\"" + ","
+                            + "\"" + newEmp.getTown() + "\"" + ","
+                            + "\"" + newEmp.getCounty() + "\"" + ","
+                            + "\"" + newEmp.getPostcode() + "\"" + ","
+                            + "\"" + newEmp.getNino() + "\"" + ","
+                            + "\"" + newEmp.getBankNo() + "\"" + ","
+                            + newEmp.getStartingSalary() + ","
+                            + newEmp.getDepartmentId() + ")";
 
-            prep1.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
-        }
+                    System.out.println(sql);
+
+                    PreparedStatement prep1 =
+                            conn.prepareStatement(sql);
+
+                    prep1.executeUpdate();
+                } catch (SQLException ex) {
+                    System.out.println("SQLException: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("VendorError: " + ex.getErrorCode());
+                }
 
             case 2:
                 Scanner salesEmployeeScanner = new Scanner(System.in);
@@ -319,13 +271,54 @@ public class Main {
                 System.out.println("Please enter sales total: ");
                 salesEmployee.setSalesTotal(salesEmployeeScanner.nextDouble());
                 salesEmployeeScanner.nextLine();
-                break;
+
+                try {
+                    System.out.println(salesEmployee.getBankNo());
+                    Connection conn = null;
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                            "root", "password");
+
+
+                    String sql = "insert into Employees" +
+                            "(" +
+                            "forename," +
+                            "surname," +
+                            "addressLine1, " +
+                            "addressLine2," +
+                            "town, " +
+                            "county, " +
+                            "postcode, " +
+                            "nino, " +
+                            "bankNo, " +
+                            "startingSalary, " +
+                            "departmentId) " +
+                            "values ("
+                            + "\"" + salesEmployee.getForename() + "\"" + ","
+                            + "\"" + salesEmployee.getSurname() + "\"" + ","
+                            + "\"" + salesEmployee.getAddressLine1() + "\"" + ","
+                            + "\"" + salesEmployee.getAddressLine2() + "\"" + ","
+                            + "\"" + salesEmployee.getTown() + "\"" + ","
+                            + "\"" + salesEmployee.getCounty() + "\"" + ","
+                            + "\"" + salesEmployee.getPostcode() + "\"" + ","
+                            + "\"" + salesEmployee.getNino() + "\"" + ","
+                            + "\"" + salesEmployee.getBankNo() + "\"" + ","
+                            + salesEmployee.getStartingSalary() + ","
+                            + salesEmployee.getDepartmentId() + ")";
+
+                    PreparedStatement prep1 =
+                            conn.prepareStatement(sql);
+
+                    prep1.executeUpdate();
+
+                    AddSalesEmployee(salesEmployee);
+                    break;
+                } catch(SQLException ex){
+                    System.out.println("Error" + ex.getMessage());
+                }
         }
 
 
     }
-
-
 
 
     //Method used in User Story 2 - Employees Per Department
@@ -362,7 +355,6 @@ public class Main {
     }
 
 
-
     //Method used in User Story 4 - Employees and their Gross Pay
     public static void employeesGrossPay() {
         Connection conn = null;
@@ -397,24 +389,39 @@ public class Main {
     }
 
 
-
-
     public static void AddSalesEmployee(SalesEmployee emp) {
         Connection conn = null;
+
+        int employeeNo = 0;
 
         try {
             conn =
                     DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
                             "root", "password");
 
-            String sql = String.format("insert into Sales (employeeNo, commissionRate, totalSales) values ('%d', '%d', %d)", emp.getEmployeeNo(), emp.getCommissionRate(), emp.getSalesTotal());
 
-            System.out.println(sql);
-
+            String sql = "select employeeNo from Employees where nino =\"" +  emp.getNino() +"\"";
             PreparedStatement prep1 =
                     conn.prepareStatement(sql);
 
-            prep1.executeUpdate();
+            ResultSet results1 = prep1.executeQuery();
+
+            while (results1.next()) {
+                employeeNo = results1.getInt("employeeNo");
+
+            }
+
+            System.out.println(employeeNo);
+
+
+
+            String sql2 = "insert into Sales (employeeNo, commissionRate, totalSales) values ("+employeeNo+","+emp.getCommissionRate()+","+emp.getSalesTotal()+")";
+
+
+            PreparedStatement prep2 =
+                    conn.prepareStatement(sql2);
+
+            prep2.executeUpdate();
 
 
         } catch (SQLException ex) {
@@ -425,7 +432,7 @@ public class Main {
         }
 
     }
-    //Method used in User Story 2 - Employees Per Department
+//Method used in User Story 2 - Employees Per Department
 
     public static void highestSalesEmployeeTotal() {
         Connection conn = null;
@@ -461,7 +468,7 @@ public class Main {
 
     public static void manager() {
 
-        char choice = 'a';
+        int choice = 99;
 
 
         do {
@@ -470,14 +477,15 @@ public class Main {
             System.out.println("0 - Exit\n");
 
             System.out.print("Enter your choice: ");
-            choice = scanner.nextLine().charAt(0);
+            choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
-                case '1':
+                case 1:
                     highestSalesEmployeeTotal();
 
                     break;
-                case '0':
+                case 0:
                     System.out.println("GoodBye");
                     break;
                 default:
@@ -485,7 +493,7 @@ public class Main {
             }
 
 
-        } while (choice != '0');
+        } while (choice != 0);
 
 
     }
@@ -495,15 +503,13 @@ public class Main {
 
     {
 
-        char choice;
+        int choice;
         String projectName;
         char departmentNum;
         String projectName2 = "";
 
 
         do {
-
-            // keyboard.nextLine();
             System.out.println("\n**** Talent Manager Menu ****");
             System.out.println("1 - Add a Project");
             System.out.println("2 - Assign a Project");
@@ -512,11 +518,12 @@ public class Main {
 
 
             System.out.println("Enter your choice: ");
-            choice = scanner.nextLine().charAt(0);
+            choice = scanner.nextInt();
+                    scanner.nextLine();
 
 
             switch (choice) {
-                case '1':
+                case 1:
 
                     try {
                         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
@@ -584,7 +591,7 @@ public class Main {
 
                     break;
 
-                case '2':
+                case 2:
 
                     try {
                         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
@@ -684,7 +691,7 @@ public class Main {
                     }
 
                     break;
-                case '3':
+                case 3:
 
                     try {
 
@@ -721,7 +728,7 @@ public class Main {
 
                     break;
 
-                case '0':
+                case 0:
                     System.out.println("GoodBye");
                     break;
                 default:
