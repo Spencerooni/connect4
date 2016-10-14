@@ -47,12 +47,17 @@ public class Main {
         switch (accessNo){
             case 1 :
                 hrAccess();
-                System.out.println("HR");
+                System.out.println("\n");
                 employeesPerDepartment();
                 break;
             case 2 :
                 System.out.println("FINANCE");
                 break;
+            case 3 :
+                System.out.println("");
+                break;
+            case 4 :
+                System.out.println("");
         }
     }
 
@@ -81,7 +86,7 @@ public class Main {
                     employeesPerBU();
                     break;
                 default:
-                    System.out.println("Invalid option. Please re-emter.");
+                    System.out.println("Invalid option. Please re-enter.");
             }
             }catch(Exception e){
                     System.out.println("Invalid entry. Please re-enter.");
