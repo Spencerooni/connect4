@@ -28,6 +28,7 @@ public class Employees {
         this.bankNo = bankNo;
         this.startingSalary = startingSalary;
         this.nino = nino;
+        System.out.println("Employee Created.");
     }
 
     public int getEmployeeNo() {

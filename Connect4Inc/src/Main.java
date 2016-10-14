@@ -62,16 +62,20 @@ public class Main {
         System.out.println();
         Scanner inputScanner = new Scanner(System.in);
         while (true) {
+            System.out.println();
+            System.out.println("HR MENU:");
             System.out.println("Please select what you would like to do.");
             System.out.println("1. Enter New Employee");
             System.out.println("2. Enter New Sales Employee");
             System.out.println("3. Generate Employees per Project report");
+            System.out.println("4. Quit the program");
             int inputChoice = inputScanner.nextInt();
-            inputScanner.next();
+            inputScanner.nextLine();
             try{
             switch(inputChoice) {
                 case 1:
                     System.out.println("Decided to create employee.");
+                    addNewEmployee();
                     break;
                 case 2:
                     System.out.println("Decided to create new sales employee");
@@ -80,6 +84,9 @@ public class Main {
                     System.out.println("Decided to generate report.");
                     employeesPerBU();
                     break;
+                case 4:
+                    System.out.println("Quitting program...");
+                    System.exit(0);
                 default:
                     System.out.println("Invalid option. Please re-emter.");
             }
@@ -138,21 +145,21 @@ public class Main {
         String addressLine1 = employeeInputScanner.next();
         System.out.print("Please enter address line 2: ");
         String addressLine2 = employeeInputScanner.next();
-        System.out.println("Please enter town: ");
+        System.out.print("Please enter town: ");
         String town = employeeInputScanner.next();
-        System.out.println("Please enter county: ");
+        System.out.print("Please enter county: ");
         String county = employeeInputScanner.next();
-        System.out.println("Please enter postcode: ");
+        System.out.print("Please enter postcode: ");
         String postcode = employeeInputScanner.next();
-        System.out.println("Please enter department id: ");
+        System.out.print("Please enter department id: ");
         int departmentID = employeeInputScanner.nextInt();
-        employeeInputScanner.next();
-        System.out.println("Please enter bank no: ");
+        employeeInputScanner.nextLine();
+        System.out.print("Please enter bank no: ");
         String bankNo = employeeInputScanner.next();
-        System.out.println("Please enter starting salary: ");
+        System.out.print("Please enter starting salary: ");
         Double startingSalary = employeeInputScanner.nextDouble();
-        employeeInputScanner.next();
-        System.out.println("Please enter national insurance number:");
+        employeeInputScanner.nextLine();
+        System.out.print("Please enter national insurance number:");
         String nationalInsuranceNo = employeeInputScanner.next();
 
         Employees newEmployee = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
