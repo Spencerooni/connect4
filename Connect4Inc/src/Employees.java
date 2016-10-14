@@ -36,6 +36,10 @@ public class Employees {
         System.out.println("Employee Created.");
     }
 
+    //Default Constructor for no values
+
+    public Employees(){};
+
     public int getEmployeeNo() {
         return employeeNo;
     }
