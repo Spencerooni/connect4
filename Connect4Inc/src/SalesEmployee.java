@@ -1,7 +1,7 @@
 /**
  * Created by benl on 13/10/2016.
  */
-/*public class SalesEmployee extends Employees {
+public class SalesEmployee extends Employees {
 
     private double commissionRate;
     private double salestotal;
@@ -13,4 +13,4 @@
         this.salestotal = salestotal;
 
     }
-}*/
+}
