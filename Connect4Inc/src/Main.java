@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
 
-
         //Creating connection with Connect4
 
         Connection connection;
@@ -21,8 +20,8 @@ public class Main {
                 "root",
                 "password");
 
-       PreparedStatement statement =  connection.prepareStatement("Select * from Departments;");
-       ResultSet resultResult = statement.executeQuery();
+        PreparedStatement statement = connection.prepareStatement("Select * from Departments;");
+        ResultSet resultResult = statement.executeQuery();
 
         //Printing Menu
 
@@ -35,7 +34,6 @@ public class Main {
         String password = scanner.next();
 
 
-
         String loginString = String.format("Select accessNo from Logins where username = \"%s\" and password = \"%s\"", login, password);
 
         PreparedStatement loginStatement = connection.prepareStatement(loginString);
@@ -43,24 +41,24 @@ public class Main {
 
         int accessNo = 0;
 
-        while (loginResultSet.next()){
-             accessNo = loginResultSet.getInt("accessNo");
+        while (loginResultSet.next()) {
+            accessNo = loginResultSet.getInt("accessNo");
         }
 
-        switch (accessNo){
-            case 1 :
+        switch (accessNo) {
+            case 1:
                 hrAccess();
                 System.out.println("HR");
                 employeesPerDepartment();
                 break;
-            case 2 :
+            case 2:
                 System.out.println("FINANCE");
                 break;
         }
     }
 
 
-    public static void hrAccess(){
+    public static void hrAccess() {
         System.out.println("HR Access Level Approved.");
         System.out.println();
         Scanner inputScanner = new Scanner(System.in);
@@ -71,31 +69,30 @@ public class Main {
             System.out.println("3. Generate Employees per Project report");
             int inputChoice = inputScanner.nextInt();
             inputScanner.next();
-            try{
-            switch(inputChoice) {
-                case 1:
-                    System.out.println("Decided to create employee.");
-                    break;
-                case 2:
-                    System.out.println("Decided to create new sales employee");
-                    break;
-                case 3:
-                    System.out.println("Decided to generate report.");
-                    employeesPerBU();
-                    break;
-                default:
-                    System.out.println("Invalid option. Please re-emter.");
-            }
-            }catch(Exception e){
-                    System.out.println("Invalid entry. Please re-enter.");
+            try {
+                switch (inputChoice) {
+                    case 1:
+                        System.out.println("Decided to create employee.");
+                        break;
+                    case 2:
+                        System.out.println("Decided to create new sales employee");
+                        break;
+                    case 3:
+                        System.out.println("Decided to generate report.");
+                        employeesPerBU();
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please re-emter.");
                 }
+            } catch (Exception e) {
+                System.out.println("Invalid entry. Please re-enter.");
             }
         }
-
+    }
 
 
     //Method used by HR in User Story 2
-    public static void employeesPerBU (){
+    public static void employeesPerBU() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
@@ -119,8 +116,7 @@ public class Main {
 
                 System.out.printf("%-22s %s\n", department, emps);
             }
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
@@ -128,10 +124,9 @@ public class Main {
         }
 
 
-
     }
 
-    public static void addNewEmployee(){
+    public static void addNewEmployee() {
         Scanner employeeInputScanner = new Scanner(System.in);
         System.out.print("Please enter forename: ");
         String forename = employeeInputScanner.next();
@@ -158,12 +153,12 @@ public class Main {
         System.out.println("Please enter national insurance number:");
         String nationalInsuranceNo = employeeInputScanner.next();
 
-        Employees newEmployee = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+        Employees newEmployee = new Employees(forename, surname, addressLine1, addressLine2, town, county, postcode, departmentID, bankNo, startingSalary, nationalInsuranceNo);
     }
 
 
     //Method used in User Story 2 - Employees Per Department
-    public static void employeesPerDepartment(){
+    public static void employeesPerDepartment() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
@@ -187,16 +182,12 @@ public class Main {
 
                 System.out.printf("%-23s %s\n", department, empsName);
             }
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-
-
-
 
 
     }
@@ -466,7 +457,7 @@ public class Main {
                                 DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
                                         "root", "password");
 
-                        sql = "insert into Assignments (employeeNo, projectId, startDate) values " + "(" + employeeNo2 + ", " + projectNo + ", " + "NOW())";
+                        sql = "insert into Assignments (employeeNo, projectId) values " + "(" + employeeNo2 + ", " + projectNo + ")";
 
                         System.out.println(sql);
 
