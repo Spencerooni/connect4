@@ -46,14 +46,9 @@ public class Main {
             accessNo = loginResultSet.getInt("accessNo");
         }
 
-<<<<<<< HEAD
-        switch (accessNo) {
-            case 1:
-=======
         switch (accessNo){
             case 1 :
                 hrAccess();
->>>>>>> 4ad2ad157eeb11c0e15924630db78f5f78b44f29
                 System.out.println("HR");
                 employeesPerDepartment();
                 break;
@@ -64,11 +59,6 @@ public class Main {
         }
     }
 
-
-<<<<<<< HEAD
-    //Method used by HR in User Story 2
-    public void employeesPerBU() {
-=======
     public static void hrAccess(){
         System.out.println("HR Access Level Approved.");
         System.out.println();
@@ -112,7 +102,6 @@ public class Main {
 
     //Method used by HR in User Story 2
     public static void employeesPerBU (){
->>>>>>> 4ad2ad157eeb11c0e15924630db78f5f78b44f29
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
@@ -210,11 +199,6 @@ public class Main {
         }
     }
 
-
-
-<<<<<<< HEAD
-
-
     //Method used in User Story 4 - Employees and their Gross Pay
     public static void employeesGrossPay() {
         Connection conn = null;
@@ -247,10 +231,9 @@ public class Main {
         }
 
 
-=======
-
-
     }
+
+
 
 
     public static void AddSalesEmployee(SalesEmployee emp) {
@@ -585,7 +568,6 @@ public class Main {
 
 
         } while (!(choice == '0'));
->>>>>>> 4ad2ad157eeb11c0e15924630db78f5f78b44f29
     }
 
 
