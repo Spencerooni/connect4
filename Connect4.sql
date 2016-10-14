@@ -1,6 +1,13 @@
+DROP DATABASE IF EXISTS Connect4;
 CREATE DATABASE Connect4;
 USE Connect4;
-SET AUTO_COMMIT = 0;
+
+drop table if exists Departments;
+
+create table Departments (
+id int(255) primary key auto_increment,
+name varchar(50) not null
+);
 
 DROP TABLE IF EXISTS Logins;
 
@@ -11,7 +18,7 @@ password varchar(50) NOT NULL,
 accessNo int NOT NULL
 );
 
-DROP TABLE IF EXISTS Employees; 
+DROP TABLE IF EXISTS Employees;
 
 CREATE TABLE Employees (
 	forename varchar(30) NOT NULL,
@@ -26,20 +33,46 @@ CREATE TABLE Employees (
 	startingSalary double,
 	employeeNo int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	departmentId int
-)
+);
 
-drop table if exists Departments;
+DROP TABLE IF EXISTS Sales;
 
-create table Departments (
-id int(255) primary key auto_increment,
-name varchar(50) not null
+CREATE TABLE Sales (
+        employeeNo int NOT NULL UNIQUE,
+        commissionRate double,
+        totalSales double
 );
 
 insert into Departments (name)
 values ('Evolve');
 
 insert into Departments (name)
-values ('Enterprise');
+values ('Enterprise'); 
 
 insert into Departments (name)
 values ('Gov');
+
+insert into Logins (username, password, accessNo) values ("hr@kainos.com", "password1", 1);
+
+insert into Logins (username, password, accessNo) values ("finance@kainos.com", "password2", 2); 
+
+INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
+Values ("Aoife", "Gildernew", "54 New Street", "New Road", "New Town", "New County", "BT67 3DK", "PB638474D", "BANKNO1", 10000, 1);
+
+INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
+Values ("Ben", "Leonard", "7 Street", "Road", "Town", "County", "BT67 6HF", "PP784389A", "BANKNO2", 12500.50, 2);
+
+INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId)
+VALUES ("Joshua", "Knigt", "98 Address","Address 2", "Town", "County", "BT7 9DB", "LM674387C", "BANKNO3", 25000, 1);
+
+INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId)
+VALUES ("Corey", "Duffy", "98 New Address", "New Address", "Town", "New County", "BT35 7DH", "BD647387A", "BANKNO4", 10000, 2);
+
+INSERT INTO Sales VALUES (1, 25, 10000);
+INSERT INTO Sales VALUES (2, 15, 150000);
+
+alter table Employees add constraint fk_Employees_ref_Departments 
+foreign key Employees(departmentId) references Departments(id);
+
+alter table Sales add constraint fk_Sales_ref_Employees
+foreign key Sales(employeeNo) references Employees(employeeNo);
