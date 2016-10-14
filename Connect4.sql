@@ -55,6 +55,8 @@ values ('Gov');
 insert into Logins (username, password, accessNo) values ("hr@kainos.com", "password1", 1);
 
 insert into Logins (username, password, accessNo) values ("finance@kainos.com", "password2", 2); 
+insert into Logins (username, password, accessNo) values ("manager@kainos.com", "password2", 3); 
+insert into Logins (username, password, accessNo) values ("talentmanager@kainos.com", "password2", 4); 
 
 INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
 Values ("Aoife", "Gildernew", "54 New Street", "New Road", "New Town", "New County", "BT67 3DK", "PB638474D", "BANKNO1", 10000, 1);
@@ -87,8 +89,8 @@ departmentId int);
  foreign key Projects(departmentId) references Departments(id);
  
  
-drop table if exists Assignment;
-CREATE TABLE `Assignment` (
+drop table if exists Assignments;
+CREATE TABLE `Assignments` (
   `employeeNo` INT NOT NULL,
   `projectId` INT NOT NULL,
   `startDate` DATE,

@@ -164,8 +164,11 @@ public class Main {
                     String town = employeeInputScanner.next();
                     System.out.print("Please enter county: ");
                     String county = employeeInputScanner.next();
-                    System.out.print("Please enter postcode: ");
-                    String postcode = employeeInputScanner.next();
+                    String postcode;
+                    do {
+                        System.out.print("Please enter postcode: ");
+                        postcode = employeeInputScanner.next();
+                    } while (postcode.length() > 9);
                     System.out.print("Please enter department id: ");
                     int departmentID = employeeInputScanner.nextInt();
                     employeeInputScanner.nextLine();
