@@ -139,6 +139,7 @@ public class Main {
     }
 
     public static void addNewEmployee(){
+        try {
         Scanner employeeInputScanner = new Scanner(System.in);
         System.out.print("Please enter forename: ");
         String forename = employeeInputScanner.next();
@@ -165,16 +166,82 @@ public class Main {
         System.out.print("Please enter national insurance number:");
         String nationalInsuranceNo = employeeInputScanner.next();
 
-        Employees newEmployee = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+        Employees newEmp = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+
+            System.out.println(newEmp.getBankNo());
         Connection conn = null;
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
                     "root", "password");
 
-            String sql = String.format("insert into Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,nino,bankNo,startingSalary,employeeNo,departmentID) VALUES (%s,%s,%s,%s,%s,%s,%s,%d,%s,%d,%s)",forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+            /*"insert into Employees" +
+                    "(" +
+                    "forename," +
+                    "surname," +
+                    "addressLine1, " +
+                    "addressLine2," +
+                    "town, " +
+                    "county, " +
+                    "postcode, " +
+                    "nino, " +
+                    "bankNo, " +
+                    "startingSalary, " +
+                    "departmentId) " +
+                    "values (%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%d," +
+                    "%d)"
+                    ,newEmp.getForename(),
+                    newEmp.getSurname(),
+                    newEmp.getAddressLine1(),
+                    newEmp.getAddressLine2(),
+                    newEmp.getTown(),
+                    newEmp.getCounty(),
+                    newEmp.getPostcode(),
+                    newEmp.getNino(),
+                    newEmp.getBankNo(),
+                    newEmp.getStartingSalary(),
+                    newEmp.getDepartmentId());*/
 
-            PreparedStatement prepr = conn.prepareStatement(sql);
-            prepr.executeUpdate();
+            String sql = "insert into Employees" +
+                            "(" +
+                            "forename," +
+                            "surname," +
+                            "addressLine1, " +
+                            "addressLine2," +
+                            "town, " +
+                            "county, " +
+                            "postcode, " +
+                            "nino, " +
+                            "bankNo, " +
+                            "startingSalary, " +
+                            "departmentId) " +
+                    "values ("
+                    +"\""+newEmp.getForename()+"\""+","
+                    +"\""+newEmp.getSurname()+"\""+","
+                    +"\""+newEmp.getAddressLine1()+"\""+","
+                    +"\""+newEmp.getAddressLine2()+"\""+","
+                    +"\""+newEmp.getTown()+"\""+","
+                    +"\""+newEmp.getCounty()+"\""+","
+                    +"\""+newEmp.getPostcode()+"\""+","
+                    +"\""+newEmp.getNino()+"\""+","
+                    +"\""+newEmp.getBankNo()+"\""+","
+                    +newEmp.getStartingSalary()+","
+                    +newEmp.getDepartmentId()+")";
+
+            System.out.println(sql);
+
+            PreparedStatement prep1 =
+                    conn.prepareStatement(sql);
+
+            prep1.executeUpdate();
+
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
