@@ -18,7 +18,7 @@ password varchar(50) NOT NULL,
 accessNo int NOT NULL
 );
 
-DROP TABLE IF EXISTS Employees; 
+DROP TABLE IF EXISTS Employees;
 
 CREATE TABLE Employees (
 	forename varchar(30) NOT NULL,
@@ -53,6 +53,7 @@ insert into Departments (name)
 values ('Gov');
 
 insert into Logins (username, password, accessNo) values ("hr@kainos.com", "password1", 1);
+
 insert into Logins (username, password, accessNo) values ("finance@kainos.com", "password2", 2); 
 
 INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId) 
@@ -62,7 +63,7 @@ INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, coun
 Values ("Ben", "Leonard", "7 Street", "Road", "Town", "County", "BT67 6HF", "PP784389A", "BANKNO2", 12500.50, 2);
 
 INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId)
-VALUES ("Joshua", "Knight", "98 Address", "Address 2", "Town", "County", "BT7 9DB", "LM674387C", "BANKNO3", 25000, 1);
+VALUES ("Joshua", "Knigt", "98 Address","Address 2", "Town", "County", "BT7 9DB", "LM674387C", "BANKNO3", 25000, 1);
 
 INSERT INTO Employees (forename, surname, addressLine1, addressLine2, town, county, postcode, nino, bankNo, startingSalary, departmentId)
 VALUES ("Corey", "Duffy", "98 New Address", "New Address", "Town", "New County", "BT35 7DH", "BD647387A", "BANKNO4", 10000, 2);
