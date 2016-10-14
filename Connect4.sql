@@ -71,8 +71,39 @@ VALUES ("Corey", "Duffy", "98 New Address", "New Address", "Town", "New County",
 INSERT INTO Sales VALUES (1, 25, 10000);
 INSERT INTO Sales VALUES (2, 15, 150000);
 
-alter table Employees add constraint fk_Employees_ref_Departments 
-foreign key Employees(departmentId) references Departments(id);
 
 alter table Sales add constraint fk_Sales_ref_Employees
 foreign key Sales(employeeNo) references Employees(employeeNo);
+
+ 
+
+create table Projects (
+id int primary key auto_increment,
+projectName varchar(50) not null,
+departmentId int);
+
+
+ alter table Projects add constraint fk_Projects_ref_Departments
+ foreign key Projects(departmentId) references Departments(id);
+ 
+ 
+drop table if exists Assignment;
+CREATE TABLE `Assignment` (
+  `employeeNo` INT NOT NULL,
+  `projectId` INT NOT NULL,
+  `startDate` DATE,
+  `endDate` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`employeeNo`, `projectId`),
+  INDEX `projectId` (`projectId` ASC),
+  CONSTRAINT `Assignment_ibfk_1`
+    FOREIGN KEY (`employeeNo`)
+    REFERENCES `Connect4`.`Employees` (`employeeNo`)
+    ON DELETE CASCADE,
+  CONSTRAINT `Assignment_ibfk_2`
+    FOREIGN KEY (`projectId`)
+    REFERENCES `Connect4`.`Projects` (`id`)
+    ON DELETE CASCADE);
+    
+    insert into Projects (projectName, departmentId) values ('Bens project', 1);
+    insert into Projects (projectName, departmentId) values ('Bens project2', 2);
+    insert into Projects (projectName, departmentId) values ('Bens project2', 3);
