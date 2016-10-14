@@ -16,8 +16,7 @@ public class Employees {
     private double startingSalary;
     private String nino;
 
-    public Employees(int employeeNo, String forename, String surname, String addressLine1, String addressLine2, String town, String county, String postcode, int departmentId, String bankNo, double startingSalary, String nino) {
-        this.employeeNo = employeeNo;
+    public Employees(String forename, String surname, String addressLine1, String addressLine2, String town, String county, String postcode, int departmentId, String bankNo, double startingSalary, String nino) {
         this.forename = forename;
         this.surname = surname;
         this.addressLine1 = addressLine1;
