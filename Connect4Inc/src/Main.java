@@ -163,6 +163,20 @@ public class Main {
         String nationalInsuranceNo = employeeInputScanner.next();
 
         Employees newEmployee = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                    "root", "password");
+
+            String sql = String.format("insert into Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,nino,bankNo,startingSalary,employeeNo,departmentID) VALUES (%s,%s,%s,%s,%s,%s,%s,%d,%s,%d,%s)",forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+
+            PreparedStatement prepr = conn.prepareStatement(sql);
+            prepr.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
     }
 
 
