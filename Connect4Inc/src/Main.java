@@ -172,7 +172,7 @@ public class Main {
                 break;
 
             case 2:
-               Scanner salesEmployeeScanner = new Scanner(System.in);
+                Scanner salesEmployeeScanner = new Scanner(System.in);
 
                 SalesEmployee salesEmployee = new SalesEmployee();
 
@@ -219,6 +219,117 @@ public class Main {
                 salesEmployee.setSalesTotal(salesEmployeeScanner.nextDouble());
                 salesEmployeeScanner.nextLine();
                 break;
+        }
+    }
+
+    public static void addNewEmployee(){
+        try {
+        Scanner employeeInputScanner = new Scanner(System.in);
+        System.out.print("Please enter forename: ");
+        String forename = employeeInputScanner.next();
+        System.out.print("Please enter surname: ");
+        String surname = employeeInputScanner.next();
+        System.out.print("Please enter address line 1: ");
+        String addressLine1 = employeeInputScanner.next();
+        System.out.print("Please enter address line 2: ");
+        String addressLine2 = employeeInputScanner.next();
+        System.out.print("Please enter town: ");
+        String town = employeeInputScanner.next();
+        System.out.print("Please enter county: ");
+        String county = employeeInputScanner.next();
+        System.out.print("Please enter postcode: ");
+        String postcode = employeeInputScanner.next();
+        System.out.print("Please enter department id: ");
+        int departmentID = employeeInputScanner.nextInt();
+        employeeInputScanner.nextLine();
+        System.out.print("Please enter bank no: ");
+        String bankNo = employeeInputScanner.next();
+        System.out.print("Please enter starting salary: ");
+        Double startingSalary = employeeInputScanner.nextDouble();
+        employeeInputScanner.nextLine();
+        System.out.print("Please enter national insurance number:");
+        String nationalInsuranceNo = employeeInputScanner.next();
+
+        Employees newEmp = new Employees(forename,surname,addressLine1,addressLine2,town,county,postcode,departmentID,bankNo,startingSalary,nationalInsuranceNo);
+
+            System.out.println(newEmp.getBankNo());
+        Connection conn = null;
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/Connect4?useSSL=false",
+                    "root", "password");
+
+            /*"insert into Employees" +
+                    "(" +
+                    "forename," +
+                    "surname," +
+                    "addressLine1, " +
+                    "addressLine2," +
+                    "town, " +
+                    "county, " +
+                    "postcode, " +
+                    "nino, " +
+                    "bankNo, " +
+                    "startingSalary, " +
+                    "departmentId) " +
+                    "values (%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%s," +
+                    "%d," +
+                    "%d)"
+                    ,newEmp.getForename(),
+                    newEmp.getSurname(),
+                    newEmp.getAddressLine1(),
+                    newEmp.getAddressLine2(),
+                    newEmp.getTown(),
+                    newEmp.getCounty(),
+                    newEmp.getPostcode(),
+                    newEmp.getNino(),
+                    newEmp.getBankNo(),
+                    newEmp.getStartingSalary(),
+                    newEmp.getDepartmentId());*/
+
+            String sql = "insert into Employees" +
+                            "(" +
+                            "forename," +
+                            "surname," +
+                            "addressLine1, " +
+                            "addressLine2," +
+                            "town, " +
+                            "county, " +
+                            "postcode, " +
+                            "nino, " +
+                            "bankNo, " +
+                            "startingSalary, " +
+                            "departmentId) " +
+                    "values ("
+                    +"\""+newEmp.getForename()+"\""+","
+                    +"\""+newEmp.getSurname()+"\""+","
+                    +"\""+newEmp.getAddressLine1()+"\""+","
+                    +"\""+newEmp.getAddressLine2()+"\""+","
+                    +"\""+newEmp.getTown()+"\""+","
+                    +"\""+newEmp.getCounty()+"\""+","
+                    +"\""+newEmp.getPostcode()+"\""+","
+                    +"\""+newEmp.getNino()+"\""+","
+                    +"\""+newEmp.getBankNo()+"\""+","
+                    +newEmp.getStartingSalary()+","
+                    +newEmp.getDepartmentId()+")";
+
+            System.out.println(sql);
+
+            PreparedStatement prep1 =
+                    conn.prepareStatement(sql);
+
+            prep1.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
         }
     }
 
