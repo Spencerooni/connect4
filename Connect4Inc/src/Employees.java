@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  * Created by joshuak on 13/10/2016.
  */
@@ -28,6 +33,7 @@ public class Employees {
         this.bankNo = bankNo;
         this.startingSalary = startingSalary;
         this.nino = nino;
+        System.out.println("Employee Created.");
     }
 
     public int getEmployeeNo() {
